@@ -11,16 +11,26 @@ namespace DataAccess.Services
 {
     public class DataService
     {
-        private int site = 0;
+        private static int _site = 0;
+        private string _baseQuery =
+            $@"SELECT [Id] 
+,[Name] 
+,[Date] 
+,[UserName] 
+,[Local]  
+FROM [dbo].[ExportsHistory]
+ORDER BY id
+OFFSET {_site} ROWS
+FETCH NEXT 100 ROWS ONLY";
 
-        public async Task<List<ExportDataDto>> GetExportsHistoryData()
+        public async Task<List<ExportDataDto>> GetExportsHistoryData(ExportsFilterData filters)
         {
-            var data = (await GetExportsData()).ToList();
+            var data = (await GetExportsData(_baseQuery)).ToList();
 
             return data.Select(s => s.AsDto()).ToList();
         }
 
-        private async Task<IEnumerable<ExportDataModel>> GetExportsData()
+        private async Task<IEnumerable<ExportDataModel>> GetExportsData(string query)
         {
             using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["DemoApp.Properties.Settings.DemoAppDbConnectionString"].ConnectionString))
             {
@@ -28,8 +38,13 @@ namespace DataAccess.Services
                 {
                     db.Open();
                 }
-                return await db.QueryAsync<ExportDataModel>("SELECT [Id] ,[Name] ,[Date] ,[UserName] ,[Local]  FROM [DemoAppDb].[dbo].[ExportsHistory]");
+                return await db.QueryAsync<ExportDataModel>(query);
             }
+        }
+
+        private string PrepareQuery()
+        {
+            return null;
         }
     }
 }

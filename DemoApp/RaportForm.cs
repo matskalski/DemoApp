@@ -1,15 +1,20 @@
-﻿using DataAccess.Services;
+﻿using DataAccess.Models;
+using DataAccess.Services;
+using DevExpress.XtraEditors;
 using System;
 using System.Linq;
 
 namespace DemoApp
 {
-    public partial class RaportForm : DevExpress.XtraEditors.XtraForm
+    public partial class RaportForm : XtraForm
     {
-        private readonly DataService dataService;
+        private readonly DataService _dataService;
+        private int _displayedPage = 0;
+        private ExportsFilterData _filters = new ExportsFilterData();
+
         public RaportForm()
         {
-            dataService = new DataService();
+            _dataService = new DataService();
             InitializeComponent();
         }
 
@@ -23,11 +28,43 @@ namespace DemoApp
         {
             var dateFrom = DateFrom.DateTime;
             var dateTo = DateTo.DateTime;
-            var local = LocalLabel.Text;
 
-            var data = await dataService.GetExportsHistoryData();
+            var data = await _dataService.GetExportsHistoryData(_filters);
 
             RaportGrid.DataSource = data.ToList();
+        }
+
+        private void PrevButton_Click(object sender, EventArgs e)
+        {
+            if (_displayedPage == 0)
+            {
+                return;
+            }
+
+            _displayedPage--;
+        }
+
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+            _displayedPage++;
+        }
+
+        private void LocalSelect_EditValueChanged(object sender, EventArgs e)
+        {
+            var value = (sender as LookUpEdit).Text;
+            _filters.Local = value;
+        }
+
+        private void DateFrom_EditValueChanged(object sender, EventArgs e)
+        {
+            var value = (sender as DateEdit).Text;
+            _filters.DateFrom = value;
+        }
+
+        private void DateTo_EditValueChanged(object sender, EventArgs e)
+        {
+            var value = (sender as DateEdit).Text;
+            _filters.DateFrom = value;
         }
     }
 }

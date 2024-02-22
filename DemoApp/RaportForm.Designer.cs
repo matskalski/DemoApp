@@ -67,6 +67,7 @@
             this.LocalSelect.Properties.NullText = "Select local";
             this.LocalSelect.Size = new System.Drawing.Size(100, 20);
             this.LocalSelect.TabIndex = 0;
+            this.LocalSelect.EditValueChanged += new System.EventHandler(this.LocalSelect_EditValueChanged);
             // 
             // localsBindingSource
             // 
@@ -93,6 +94,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.DateFrom.Size = new System.Drawing.Size(100, 20);
             this.DateFrom.TabIndex = 1;
+            this.DateFrom.EditValueChanged += new System.EventHandler(this.DateFrom_EditValueChanged);
             // 
             // DateTo
             // 
@@ -105,6 +107,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.DateTo.Size = new System.Drawing.Size(100, 20);
             this.DateTo.TabIndex = 2;
+            this.DateTo.EditValueChanged += new System.EventHandler(this.DateTo_EditValueChanged);
             // 
             // ConfirmButton
             // 
@@ -161,6 +164,7 @@
             this.PrevButton.Size = new System.Drawing.Size(75, 23);
             this.PrevButton.TabIndex = 8;
             this.PrevButton.Text = "poprzednia";
+            this.PrevButton.Click += new System.EventHandler(this.PrevButton_Click);
             // 
             // NextButton
             // 
@@ -169,6 +173,7 @@
             this.NextButton.Size = new System.Drawing.Size(75, 23);
             this.NextButton.TabIndex = 9;
             this.NextButton.Text = "następna";
+            this.NextButton.Click += new System.EventHandler(this.NextButton_Click);
             // 
             // RaportForm
             // 
