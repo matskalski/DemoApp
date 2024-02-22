@@ -26,6 +26,8 @@ namespace DemoApp
 
         private async void ConfirmButton_Click(object sender, EventArgs e)
         {
+            _displayedPage = 0;
+
             var dateFrom = DateFrom.DateTime;
             var dateTo = DateTo.DateTime;
 
@@ -64,7 +66,7 @@ namespace DemoApp
         private void DateTo_EditValueChanged(object sender, EventArgs e)
         {
             var value = (sender as DateEdit).Text;
-            _filters.DateFrom = value;
+            _filters.DateTo = value;
         }
     }
 }
