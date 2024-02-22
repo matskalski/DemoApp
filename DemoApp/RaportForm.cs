@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DataAccess;
+using System;
+using System.Linq;
 
 namespace DemoApp
 {
     public partial class RaportForm : DevExpress.XtraEditors.XtraForm
     {
+        private readonly Class1 class1;
         public RaportForm()
         {
+            class1 = new Class1();
             InitializeComponent();
         }
 
@@ -22,30 +25,11 @@ namespace DemoApp
             var dateTo = DateTo.DateTime;
             var local = LocalLabel.Text;
 
-            var list = new List<Model>();
+            var data = class1.Get().ToList();
 
-            list.Add(new Model
-            {
-                Id = 1,
-                Name = "n"
-            });
-
-            list.Add(new Model
-            {
-                Id = 2,
-                Name = "nn"
-            });
-
-
-            RaportGrid.DataSource = list;
+            RaportGrid.DataSource = data;
 
             var tt = 1;
         }
-    }
-
-    public class Model
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 }
