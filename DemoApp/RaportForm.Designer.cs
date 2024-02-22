@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
+            this.LocalSelect = new DevExpress.XtraEditors.LookUpEdit();
             this.localsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.localsDataSet = new DemoApp.LocalsDataSet();
             this.localsTableAdapter = new DemoApp.LocalsDataSetTableAdapters.LocalsTableAdapter();
@@ -41,7 +41,7 @@
             this.DateToLabel = new DevExpress.XtraEditors.LabelControl();
             this.RaportGrid = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LocalSelect.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.localsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.localsDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties)).BeginInit();
@@ -52,19 +52,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // lookUpEdit1
+            // LocalSelect
             // 
-            this.lookUpEdit1.Location = new System.Drawing.Point(24, 49);
-            this.lookUpEdit1.Name = "lookUpEdit1";
-            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.LocalSelect.Location = new System.Drawing.Point(24, 49);
+            this.LocalSelect.Name = "LocalSelect";
+            this.LocalSelect.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit1.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            this.LocalSelect.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Local", "Local", 20, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.Ascending, DevExpress.Utils.DefaultBoolean.Default)});
-            this.lookUpEdit1.Properties.DataSource = this.localsBindingSource;
-            this.lookUpEdit1.Properties.DisplayMember = "Local";
-            this.lookUpEdit1.Properties.NullText = "Select local";
-            this.lookUpEdit1.Size = new System.Drawing.Size(100, 20);
-            this.lookUpEdit1.TabIndex = 0;
+            this.LocalSelect.Properties.DataSource = this.localsBindingSource;
+            this.LocalSelect.Properties.DisplayMember = "Local";
+            this.LocalSelect.Properties.NullText = "Select local";
+            this.LocalSelect.Size = new System.Drawing.Size(100, 20);
+            this.LocalSelect.TabIndex = 0;
             // 
             // localsBindingSource
             // 
@@ -164,11 +164,11 @@
             this.Controls.Add(this.ConfirmButton);
             this.Controls.Add(this.DateTo);
             this.Controls.Add(this.DateFrom);
-            this.Controls.Add(this.lookUpEdit1);
+            this.Controls.Add(this.LocalSelect);
             this.Name = "RaportForm";
             this.Text = "Raport";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LocalSelect.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.localsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.localsDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties.CalendarTimeProperties)).EndInit();
@@ -184,7 +184,7 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
+        private DevExpress.XtraEditors.LookUpEdit LocalSelect;
         private LocalsDataSet localsDataSet;
         private System.Windows.Forms.BindingSource localsBindingSource;
         private LocalsDataSetTableAdapters.LocalsTableAdapter localsTableAdapter;
