@@ -19,6 +19,8 @@ namespace DemoApp
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             var t = DateFrom.DateTime;
+            var t2 = DateTo.DateTime;
+            var local = LocalLabel.Text;
 
             var tt = 1;
         }

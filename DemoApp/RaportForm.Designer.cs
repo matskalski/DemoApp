@@ -39,6 +39,8 @@
             this.LocalLabel = new DevExpress.XtraEditors.LabelControl();
             this.DateFromLabel = new DevExpress.XtraEditors.LabelControl();
             this.DateToLabel = new DevExpress.XtraEditors.LabelControl();
+            this.RaportGrid = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.localsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.localsDataSet)).BeginInit();
@@ -46,6 +48,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateTo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateTo.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RaportGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // lookUpEdit1
@@ -102,7 +106,7 @@
             // 
             // ConfirmButton
             // 
-            this.ConfirmButton.Location = new System.Drawing.Point(24, 446);
+            this.ConfirmButton.Location = new System.Drawing.Point(24, 467);
             this.ConfirmButton.Name = "ConfirmButton";
             this.ConfirmButton.Size = new System.Drawing.Size(90, 23);
             this.ConfirmButton.TabIndex = 3;
@@ -133,11 +137,27 @@
             this.DateToLabel.TabIndex = 6;
             this.DateToLabel.Text = "Data do";
             // 
+            // RaportGrid
+            // 
+            this.RaportGrid.Location = new System.Drawing.Point(152, 29);
+            this.RaportGrid.MainView = this.gridView1;
+            this.RaportGrid.Name = "RaportGrid";
+            this.RaportGrid.Size = new System.Drawing.Size(773, 386);
+            this.RaportGrid.TabIndex = 7;
+            this.RaportGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.RaportGrid;
+            this.gridView1.Name = "gridView1";
+            // 
             // RaportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(937, 502);
+            this.Controls.Add(this.RaportGrid);
             this.Controls.Add(this.DateToLabel);
             this.Controls.Add(this.DateFromLabel);
             this.Controls.Add(this.LocalLabel);
@@ -155,6 +175,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateTo.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateTo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RaportGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,6 +194,8 @@
         private DevExpress.XtraEditors.LabelControl LocalLabel;
         private DevExpress.XtraEditors.LabelControl DateFromLabel;
         private DevExpress.XtraEditors.LabelControl DateToLabel;
+        private DevExpress.XtraGrid.GridControl RaportGrid;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }
 
