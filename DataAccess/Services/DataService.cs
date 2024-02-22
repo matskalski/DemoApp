@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using DataAccess.Models;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -15,7 +14,7 @@ namespace DataAccess.Services
     {
         private static int _site = 0;
         private string _baseQuery =
-            $@"SELECT [Id] 
+ $@"SELECT [Id] 
 ,[Name] 
 ,[Date] 
 ,[UserName] 
@@ -26,31 +25,37 @@ ORDER BY id
 OFFSET {_site} ROWS
 FETCH NEXT 100 ROWS ONLY";
 
-        public async Task<List<ExportDataDto>> GetExportsHistoryData(ExportsFilterData filters)
-        {
-            var queryTemplate = PrepareQuery(filters);
-            var data = (await GetExportsData(queryTemplate)).ToList();
+        private string _rowsCountQuery =
+$@"SELECT COUNT(1)
+FROM [dbo].[ExportsHistory]
+/**where**/";
 
-            return data.Select(s => s.AsDto()).ToList();
-        }
-
-        private async Task<IEnumerable<ExportDataModel>> GetExportsData(SqlBuilder.Template queryTemplate)
+        public async Task<ResultDataModel> GetExportsHistoryData(ExportsFilterData filters)
         {
+            var dataQueryTemplate = PrepareQuery(filters, _baseQuery);
+            var rowsCountQuery = PrepareQuery(filters, _rowsCountQuery);
             using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["DemoApp.Properties.Settings.DemoAppDbConnectionString"].ConnectionString))
             {
                 if (db.State == ConnectionState.Closed)
                 {
                     db.Open();
                 }
-                return await db.QueryAsync<ExportDataModel>(queryTemplate.RawSql, queryTemplate.Parameters);
+
+                var data = await db.QueryAsync<ExportDataModel>(dataQueryTemplate.RawSql, dataQueryTemplate.Parameters);
+                var count = await db.QueryAsync<int>(rowsCountQuery.RawSql, rowsCountQuery.Parameters);
+
+                return new ResultDataModel
+                {
+                    Data = data.Select(s => s.AsDto()).ToList(),
+                    RowsCount = count.First()
+                };
             }
         }
 
-        private SqlBuilder.Template PrepareQuery(ExportsFilterData filters)
+        private SqlBuilder.Template PrepareQuery(ExportsFilterData filters, string query)
         {
             var builder = new SqlBuilder();
-
-            var builderTemplate = builder.AddTemplate(_baseQuery);
+            var builderTemplate = builder.AddTemplate(query);
 
             if (!string.IsNullOrEmpty(filters.DateFrom))
             {
