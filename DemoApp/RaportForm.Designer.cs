@@ -41,6 +41,8 @@
             this.DateToLabel = new DevExpress.XtraEditors.LabelControl();
             this.RaportGrid = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.PrevButton = new DevExpress.XtraEditors.SimpleButton();
+            this.NextButton = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.LocalSelect.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.localsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.localsDataSet)).BeginInit();
@@ -152,11 +154,29 @@
             this.gridView1.GridControl = this.RaportGrid;
             this.gridView1.Name = "gridView1";
             // 
+            // PrevButton
+            // 
+            this.PrevButton.Location = new System.Drawing.Point(379, 467);
+            this.PrevButton.Name = "PrevButton";
+            this.PrevButton.Size = new System.Drawing.Size(75, 23);
+            this.PrevButton.TabIndex = 8;
+            this.PrevButton.Text = "poprzednia";
+            // 
+            // NextButton
+            // 
+            this.NextButton.Location = new System.Drawing.Point(556, 467);
+            this.NextButton.Name = "NextButton";
+            this.NextButton.Size = new System.Drawing.Size(75, 23);
+            this.NextButton.TabIndex = 9;
+            this.NextButton.Text = "następna";
+            // 
             // RaportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(937, 502);
+            this.Controls.Add(this.NextButton);
+            this.Controls.Add(this.PrevButton);
             this.Controls.Add(this.RaportGrid);
             this.Controls.Add(this.DateToLabel);
             this.Controls.Add(this.DateFromLabel);
@@ -196,6 +216,8 @@
         private DevExpress.XtraEditors.LabelControl DateToLabel;
         private DevExpress.XtraGrid.GridControl RaportGrid;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.SimpleButton PrevButton;
+        private DevExpress.XtraEditors.SimpleButton NextButton;
     }
 }
 

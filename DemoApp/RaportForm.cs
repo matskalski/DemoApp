@@ -1,4 +1,4 @@
-﻿using DataAccess;
+﻿using DataAccess.Services;
 using System;
 using System.Linq;
 
@@ -6,10 +6,10 @@ namespace DemoApp
 {
     public partial class RaportForm : DevExpress.XtraEditors.XtraForm
     {
-        private readonly Class1 class1;
+        private readonly DataService dataService;
         public RaportForm()
         {
-            class1 = new Class1();
+            dataService = new DataService();
             InitializeComponent();
         }
 
@@ -19,17 +19,15 @@ namespace DemoApp
             this.localsTableAdapter.Fill(this.localsDataSet.Locals);
         }
 
-        private void ConfirmButton_Click(object sender, EventArgs e)
+        private async void ConfirmButton_Click(object sender, EventArgs e)
         {
             var dateFrom = DateFrom.DateTime;
             var dateTo = DateTo.DateTime;
             var local = LocalLabel.Text;
 
-            var data = class1.Get().ToList();
+            var data = await dataService.GetExportsHistoryData();
 
-            RaportGrid.DataSource = data;
-
-            var tt = 1;
+            RaportGrid.DataSource = data.ToList();
         }
     }
 }
