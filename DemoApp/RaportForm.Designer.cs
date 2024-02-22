@@ -33,20 +33,24 @@
             this.localsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.localsDataSet = new DemoApp.LocalsDataSet();
             this.localsTableAdapter = new DemoApp.LocalsDataSetTableAdapters.LocalsTableAdapter();
-            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
-            this.dateEdit2 = new DevExpress.XtraEditors.DateEdit();
+            this.DateFrom = new DevExpress.XtraEditors.DateEdit();
+            this.DateTo = new DevExpress.XtraEditors.DateEdit();
+            this.ConfirmButton = new DevExpress.XtraEditors.SimpleButton();
+            this.LocalLabel = new DevExpress.XtraEditors.LabelControl();
+            this.DateFromLabel = new DevExpress.XtraEditors.LabelControl();
+            this.DateToLabel = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.localsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.localsDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateTo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateTo.Properties.CalendarTimeProperties)).BeginInit();
             this.SuspendLayout();
             // 
             // lookUpEdit1
             // 
-            this.lookUpEdit1.Location = new System.Drawing.Point(24, 12);
+            this.lookUpEdit1.Location = new System.Drawing.Point(24, 49);
             this.lookUpEdit1.Name = "lookUpEdit1";
             this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -72,37 +76,74 @@
             // 
             this.localsTableAdapter.ClearBeforeFill = true;
             // 
-            // dateEdit1
+            // DateFrom
             // 
-            this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(24, 66);
-            this.dateEdit1.Name = "dateEdit1";
-            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.DateFrom.EditValue = null;
+            this.DateFrom.Location = new System.Drawing.Point(24, 94);
+            this.DateFrom.Name = "DateFrom";
+            this.DateFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.DateFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Size = new System.Drawing.Size(100, 20);
-            this.dateEdit1.TabIndex = 1;
+            this.DateFrom.Size = new System.Drawing.Size(100, 20);
+            this.DateFrom.TabIndex = 1;
             // 
-            // dateEdit2
+            // DateTo
             // 
-            this.dateEdit2.EditValue = null;
-            this.dateEdit2.Location = new System.Drawing.Point(24, 129);
-            this.dateEdit2.Name = "dateEdit2";
-            this.dateEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.DateTo.EditValue = null;
+            this.DateTo.Location = new System.Drawing.Point(24, 139);
+            this.DateTo.Name = "DateTo";
+            this.DateTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.DateTo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit2.Size = new System.Drawing.Size(100, 20);
-            this.dateEdit2.TabIndex = 2;
+            this.DateTo.Size = new System.Drawing.Size(100, 20);
+            this.DateTo.TabIndex = 2;
+            // 
+            // ConfirmButton
+            // 
+            this.ConfirmButton.Location = new System.Drawing.Point(24, 446);
+            this.ConfirmButton.Name = "ConfirmButton";
+            this.ConfirmButton.Size = new System.Drawing.Size(90, 23);
+            this.ConfirmButton.TabIndex = 3;
+            this.ConfirmButton.Text = "Zatwierdź";
+            this.ConfirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
+            // 
+            // LocalLabel
+            // 
+            this.LocalLabel.Location = new System.Drawing.Point(24, 29);
+            this.LocalLabel.Name = "LocalLabel";
+            this.LocalLabel.Size = new System.Drawing.Size(24, 13);
+            this.LocalLabel.TabIndex = 4;
+            this.LocalLabel.Text = "Lokal";
+            // 
+            // DateFromLabel
+            // 
+            this.DateFromLabel.Location = new System.Drawing.Point(24, 75);
+            this.DateFromLabel.Name = "DateFromLabel";
+            this.DateFromLabel.Size = new System.Drawing.Size(38, 13);
+            this.DateFromLabel.TabIndex = 5;
+            this.DateFromLabel.Text = "Data od";
+            // 
+            // DateToLabel
+            // 
+            this.DateToLabel.Location = new System.Drawing.Point(24, 120);
+            this.DateToLabel.Name = "DateToLabel";
+            this.DateToLabel.Size = new System.Drawing.Size(38, 13);
+            this.DateToLabel.TabIndex = 6;
+            this.DateToLabel.Text = "Data do";
             // 
             // RaportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(937, 502);
-            this.Controls.Add(this.dateEdit2);
-            this.Controls.Add(this.dateEdit1);
+            this.Controls.Add(this.DateToLabel);
+            this.Controls.Add(this.DateFromLabel);
+            this.Controls.Add(this.LocalLabel);
+            this.Controls.Add(this.ConfirmButton);
+            this.Controls.Add(this.DateTo);
+            this.Controls.Add(this.DateFrom);
             this.Controls.Add(this.lookUpEdit1);
             this.Name = "RaportForm";
             this.Text = "Raport";
@@ -110,11 +151,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.localsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.localsDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateTo.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateTo.Properties)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -124,8 +166,12 @@
         private LocalsDataSet localsDataSet;
         private System.Windows.Forms.BindingSource localsBindingSource;
         private LocalsDataSetTableAdapters.LocalsTableAdapter localsTableAdapter;
-        private DevExpress.XtraEditors.DateEdit dateEdit1;
-        private DevExpress.XtraEditors.DateEdit dateEdit2;
+        private DevExpress.XtraEditors.DateEdit DateFrom;
+        private DevExpress.XtraEditors.DateEdit DateTo;
+        private DevExpress.XtraEditors.SimpleButton ConfirmButton;
+        private DevExpress.XtraEditors.LabelControl LocalLabel;
+        private DevExpress.XtraEditors.LabelControl DateFromLabel;
+        private DevExpress.XtraEditors.LabelControl DateToLabel;
     }
 }
 

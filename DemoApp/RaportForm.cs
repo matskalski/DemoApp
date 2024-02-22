@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 namespace DemoApp
 {
@@ -21,6 +14,13 @@ namespace DemoApp
             // TODO: This line of code loads data into the 'localsDataSet.Locals' table. You can move, or remove it, as needed.
             this.localsTableAdapter.Fill(this.localsDataSet.Locals);
 
+        }
+
+        private void ConfirmButton_Click(object sender, EventArgs e)
+        {
+            var t = DateFrom.DateTime;
+
+            var tt = 1;
         }
     }
 }
