@@ -186,7 +186,9 @@
             // 
             // ValidationMessage
             // 
+            this.ValidationMessage.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ValidationMessage.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.ValidationMessage.Appearance.Options.UseFont = true;
             this.ValidationMessage.Appearance.Options.UseForeColor = true;
             this.ValidationMessage.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.ValidationMessage.Location = new System.Drawing.Point(152, -3);
