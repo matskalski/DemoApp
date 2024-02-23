@@ -2,6 +2,7 @@
 using DataAccess.Services;
 using DevExpress.XtraEditors;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DemoApp
@@ -19,10 +20,9 @@ namespace DemoApp
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'localsDataSet.Locals' table. You can move, or remove it, as needed.
-            this.localsTableAdapter.Fill(this.localsDataSet.Locals);
+            await LoadLocals();
         }
 
         private async void ConfirmButton_Click(object sender, EventArgs e)
@@ -50,11 +50,6 @@ namespace DemoApp
             RaportGrid.DataSource = result.Data;
 
             UpdatePageLabel();
-
-            //if (_currentPage == 1)
-            //{
-            //    PrevButton.Enabled = false;
-            //}
         }
 
         private async void NextButton_Click(object sender, EventArgs e)
@@ -70,12 +65,6 @@ namespace DemoApp
             RaportGrid.DataSource = result.Data;
 
             UpdatePageLabel();
-        }
-
-        private void LocalSelect_EditValueChanged(object sender, EventArgs e)
-        {
-            var value = (sender as LookUpEdit).Text;
-            _filters.Local = value;
         }
 
         private void DateFrom_EditValueChanged(object sender, EventArgs e)
@@ -101,6 +90,21 @@ namespace DemoApp
             RaportGrid.DataSource = result.Data;
 
             return result.RowsCount;
+        }
+
+        private void LocalSelectBox_EditValueChanged(object sender, EventArgs e)
+        {
+            var value = (sender as LookUpEdit).Text;
+            _filters.Local = value;
+        }
+
+        private async Task LoadLocals()
+        {
+            var locals = await _dataService.GetLocalsList();
+            locals.Add(null);
+
+            LocalSelectBox.Properties.DataSource = locals.OrderBy(o => o);
+            LocalSelectBox.Properties.NullText = null;
         }
     }
 }

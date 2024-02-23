@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using DataAccess.Models;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -50,6 +51,19 @@ FROM [dbo].[ExportsHistory]
                     Data = data.Select(s => s.AsDto()).ToList(),
                     RowsCount = count.First()
                 };
+            }
+        }
+
+        public async Task<List<string>> GetLocalsList()
+        {
+            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["DemoApp.Properties.Settings.DemoAppDbConnectionString"].ConnectionString))
+            {
+                if (db.State == ConnectionState.Closed)
+                {
+                    db.Open();
+                }
+
+                return (await db.QueryAsync<string>("SELECT Local FROM [dbo].[LocalsV]")).ToList();
             }
         }
 

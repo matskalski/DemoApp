@@ -29,10 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.LocalSelect = new DevExpress.XtraEditors.LookUpEdit();
             this.localsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.localsDataSet = new DemoApp.LocalsDataSet();
-            this.localsTableAdapter = new DemoApp.LocalsDataSetTableAdapters.LocalsTableAdapter();
             this.DateFrom = new DevExpress.XtraEditors.DateEdit();
             this.DateTo = new DevExpress.XtraEditors.DateEdit();
             this.ConfirmButton = new DevExpress.XtraEditors.SimpleButton();
@@ -44,45 +41,16 @@
             this.PrevButton = new DevExpress.XtraEditors.SimpleButton();
             this.NextButton = new DevExpress.XtraEditors.SimpleButton();
             this.PageLabel = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.LocalSelect.Properties)).BeginInit();
+            this.LocalSelectBox = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.localsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.localsDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateTo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateTo.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RaportGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LocalSelectBox.Properties)).BeginInit();
             this.SuspendLayout();
-            // 
-            // LocalSelect
-            // 
-            this.LocalSelect.Location = new System.Drawing.Point(24, 49);
-            this.LocalSelect.Name = "LocalSelect";
-            this.LocalSelect.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.LocalSelect.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Local", "Local", 20, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.Ascending, DevExpress.Utils.DefaultBoolean.Default)});
-            this.LocalSelect.Properties.DataSource = this.localsBindingSource;
-            this.LocalSelect.Properties.DisplayMember = "Local";
-            this.LocalSelect.Properties.NullText = "Select local";
-            this.LocalSelect.Size = new System.Drawing.Size(100, 20);
-            this.LocalSelect.TabIndex = 0;
-            this.LocalSelect.EditValueChanged += new System.EventHandler(this.LocalSelect_EditValueChanged);
-            // 
-            // localsBindingSource
-            // 
-            this.localsBindingSource.DataMember = "Locals";
-            this.localsBindingSource.DataSource = this.localsDataSet;
-            // 
-            // localsDataSet
-            // 
-            this.localsDataSet.DataSetName = "LocalsDataSet";
-            this.localsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // localsTableAdapter
-            // 
-            this.localsTableAdapter.ClearBeforeFill = true;
             // 
             // DateFrom
             // 
@@ -185,11 +153,22 @@
             this.PageLabel.TabIndex = 11;
             this.PageLabel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // LocalSelectBox
+            // 
+            this.LocalSelectBox.Location = new System.Drawing.Point(24, 49);
+            this.LocalSelectBox.Name = "LocalSelectBox";
+            this.LocalSelectBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.LocalSelectBox.Size = new System.Drawing.Size(100, 20);
+            this.LocalSelectBox.TabIndex = 12;
+            this.LocalSelectBox.EditValueChanged += new System.EventHandler(this.LocalSelectBox_EditValueChanged);
+            // 
             // RaportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(937, 502);
+            this.Controls.Add(this.LocalSelectBox);
             this.Controls.Add(this.PageLabel);
             this.Controls.Add(this.NextButton);
             this.Controls.Add(this.PrevButton);
@@ -200,30 +179,24 @@
             this.Controls.Add(this.ConfirmButton);
             this.Controls.Add(this.DateTo);
             this.Controls.Add(this.DateFrom);
-            this.Controls.Add(this.LocalSelect);
             this.Name = "RaportForm";
             this.Text = "Raport";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.LocalSelect.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.localsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.localsDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateTo.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateTo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RaportGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LocalSelectBox.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private DevExpress.XtraEditors.LookUpEdit LocalSelect;
-        private LocalsDataSet localsDataSet;
         private System.Windows.Forms.BindingSource localsBindingSource;
-        private LocalsDataSetTableAdapters.LocalsTableAdapter localsTableAdapter;
         private DevExpress.XtraEditors.DateEdit DateFrom;
         private DevExpress.XtraEditors.DateEdit DateTo;
         private DevExpress.XtraEditors.SimpleButton ConfirmButton;
@@ -235,6 +208,7 @@
         private DevExpress.XtraEditors.SimpleButton PrevButton;
         private DevExpress.XtraEditors.SimpleButton NextButton;
         private System.Windows.Forms.TextBox PageLabel;
+        private DevExpress.XtraEditors.LookUpEdit LocalSelectBox;
     }
 }
 

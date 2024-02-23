@@ -46,6 +46,7 @@
     <Reference Include="DevExpress.Utils.v23.2" />
     <Reference Include="DevExpress.Sparkline.v23.2.Core" />
     <Reference Include="DevExpress.Xpo.v23.2, Version=23.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v23.2, Version=23.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v23.2" />
     <Reference Include="DevExpress.Printing.v23.2.Core" />
     <Reference Include="DevExpress.Drawing.v23.2" />
@@ -77,11 +78,6 @@
     <Compile Include="RaportForm.Designer.cs">
       <DependentUpon>RaportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LocalsDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LocalsDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="RaportForm.resx">
@@ -99,17 +95,6 @@
     </Compile>
     <None Include="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="LocalsDataSet.xsc">
-      <DependentUpon>LocalsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="LocalsDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LocalsDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="LocalsDataSet.xss">
-      <DependentUpon>LocalsDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
