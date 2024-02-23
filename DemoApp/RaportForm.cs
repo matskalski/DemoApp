@@ -27,18 +27,30 @@ namespace DemoApp
 
         private async void ConfirmButton_Click(object sender, EventArgs e)
         {
-            var dateFrom = DateFrom.DateTime;
-            var dateTo = DateTo.DateTime;
+            if (!AreFiltersValid())
+            {
+                ValidationMessage.Visible = true;
+                ValidationMessage.Text = "Data od jest późniejsza niż data do";
+                return;
+            }
+            else
+            {
+                ValidationMessage.Visible = false;
+            }
 
             _currentPage = 1;
-            //var result = await _dataService.GetExportsHistoryData(_filters, _currentPage);
             var result = await SetRaportGridData();
             _maxPagesCount = (int)Math.Ceiling((double)(result / 100M));
 
-            //RaportGrid.DataSource = result.Data;
-
-
             UpdatePageLabel();
+        }
+
+        private bool AreFiltersValid()
+        {
+            var dateFrom = DateFrom.DateTime;
+            var dateTo = DateTo.DateTime;
+
+            return dateFrom <= dateTo;
         }
 
         private async void PrevButton_Click(object sender, EventArgs e)
@@ -49,8 +61,6 @@ namespace DemoApp
             }
 
             _currentPage--;
-            //var result = await _dataService.GetExportsHistoryData(_filters, _currentPage);
-            //RaportGrid.DataSource = result.Data;
             await SetRaportGridData();
             UpdatePageLabel();
         }
@@ -63,9 +73,6 @@ namespace DemoApp
             }
 
             _currentPage++;
-
-            //var result = await _dataService.GetExportsHistoryData(_filters, _currentPage);
-            //RaportGrid.DataSource = result.Data;
             await SetRaportGridData();
             UpdatePageLabel();
         }

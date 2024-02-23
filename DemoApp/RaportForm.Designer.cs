@@ -44,6 +44,7 @@
             this.LocalSelectBox = new DevExpress.XtraEditors.LookUpEdit();
             this.LastPageButton = new DevExpress.XtraEditors.SimpleButton();
             this.FirstPageButton = new DevExpress.XtraEditors.SimpleButton();
+            this.ValidationMessage = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.localsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties.CalendarTimeProperties)).BeginInit();
@@ -183,11 +184,22 @@
             this.FirstPageButton.Text = "pierwsza";
             this.FirstPageButton.Click += new System.EventHandler(this.FirstPageButton_Click);
             // 
+            // ValidationMessage
+            // 
+            this.ValidationMessage.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.ValidationMessage.Appearance.Options.UseForeColor = true;
+            this.ValidationMessage.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.ValidationMessage.Location = new System.Drawing.Point(152, -3);
+            this.ValidationMessage.Name = "ValidationMessage";
+            this.ValidationMessage.Size = new System.Drawing.Size(773, 26);
+            this.ValidationMessage.TabIndex = 15;
+            // 
             // RaportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(937, 502);
+            this.Controls.Add(this.ValidationMessage);
             this.Controls.Add(this.FirstPageButton);
             this.Controls.Add(this.LastPageButton);
             this.Controls.Add(this.LocalSelectBox);
@@ -233,6 +245,7 @@
         private DevExpress.XtraEditors.LookUpEdit LocalSelectBox;
         private DevExpress.XtraEditors.SimpleButton LastPageButton;
         private DevExpress.XtraEditors.SimpleButton FirstPageButton;
+        private DevExpress.XtraEditors.LabelControl ValidationMessage;
     }
 }
 
