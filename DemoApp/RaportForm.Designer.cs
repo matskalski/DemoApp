@@ -42,6 +42,8 @@
             this.NextButton = new DevExpress.XtraEditors.SimpleButton();
             this.PageLabel = new System.Windows.Forms.TextBox();
             this.LocalSelectBox = new DevExpress.XtraEditors.LookUpEdit();
+            this.LastPageButton = new DevExpress.XtraEditors.SimpleButton();
+            this.FirstPageButton = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.localsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateFrom.Properties.CalendarTimeProperties)).BeginInit();
@@ -116,7 +118,7 @@
             this.RaportGrid.Location = new System.Drawing.Point(152, 29);
             this.RaportGrid.MainView = this.gridView1;
             this.RaportGrid.Name = "RaportGrid";
-            this.RaportGrid.Size = new System.Drawing.Size(773, 386);
+            this.RaportGrid.Size = new System.Drawing.Size(773, 432);
             this.RaportGrid.TabIndex = 7;
             this.RaportGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -163,11 +165,31 @@
             this.LocalSelectBox.TabIndex = 12;
             this.LocalSelectBox.EditValueChanged += new System.EventHandler(this.LocalSelectBox_EditValueChanged);
             // 
+            // LastPageButton
+            // 
+            this.LastPageButton.Location = new System.Drawing.Point(637, 467);
+            this.LastPageButton.Name = "LastPageButton";
+            this.LastPageButton.Size = new System.Drawing.Size(75, 23);
+            this.LastPageButton.TabIndex = 13;
+            this.LastPageButton.Text = "ostatnia";
+            this.LastPageButton.Click += new System.EventHandler(this.LastPageButton_Click);
+            // 
+            // FirstPageButton
+            // 
+            this.FirstPageButton.Location = new System.Drawing.Point(272, 467);
+            this.FirstPageButton.Name = "FirstPageButton";
+            this.FirstPageButton.Size = new System.Drawing.Size(75, 23);
+            this.FirstPageButton.TabIndex = 14;
+            this.FirstPageButton.Text = "pierwsza";
+            this.FirstPageButton.Click += new System.EventHandler(this.FirstPageButton_Click);
+            // 
             // RaportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(937, 502);
+            this.Controls.Add(this.FirstPageButton);
+            this.Controls.Add(this.LastPageButton);
             this.Controls.Add(this.LocalSelectBox);
             this.Controls.Add(this.PageLabel);
             this.Controls.Add(this.NextButton);
@@ -209,6 +231,8 @@
         private DevExpress.XtraEditors.SimpleButton NextButton;
         private System.Windows.Forms.TextBox PageLabel;
         private DevExpress.XtraEditors.LookUpEdit LocalSelectBox;
+        private DevExpress.XtraEditors.SimpleButton LastPageButton;
+        private DevExpress.XtraEditors.SimpleButton FirstPageButton;
     }
 }
 

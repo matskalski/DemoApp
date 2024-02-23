@@ -31,10 +31,13 @@ namespace DemoApp
             var dateTo = DateTo.DateTime;
 
             _currentPage = 1;
-            var result = await _dataService.GetExportsHistoryData(_filters, _currentPage);
-            _maxPagesCount = (int)Math.Ceiling((double)(result.RowsCount / 100M));
+            //var result = await _dataService.GetExportsHistoryData(_filters, _currentPage);
+            var result = await SetRaportGridData();
+            _maxPagesCount = (int)Math.Ceiling((double)(result / 100M));
 
-            RaportGrid.DataSource = result.Data;
+            //RaportGrid.DataSource = result.Data;
+
+
             UpdatePageLabel();
         }
 
@@ -46,9 +49,9 @@ namespace DemoApp
             }
 
             _currentPage--;
-            var result = await _dataService.GetExportsHistoryData(_filters, _currentPage);
-            RaportGrid.DataSource = result.Data;
-
+            //var result = await _dataService.GetExportsHistoryData(_filters, _currentPage);
+            //RaportGrid.DataSource = result.Data;
+            await SetRaportGridData();
             UpdatePageLabel();
         }
 
@@ -61,9 +64,9 @@ namespace DemoApp
 
             _currentPage++;
 
-            var result = await _dataService.GetExportsHistoryData(_filters, _currentPage);
-            RaportGrid.DataSource = result.Data;
-
+            //var result = await _dataService.GetExportsHistoryData(_filters, _currentPage);
+            //RaportGrid.DataSource = result.Data;
+            await SetRaportGridData();
             UpdatePageLabel();
         }
 
@@ -105,6 +108,20 @@ namespace DemoApp
 
             LocalSelectBox.Properties.DataSource = locals.OrderBy(o => o);
             LocalSelectBox.Properties.NullText = null;
+        }
+
+        private async void FirstPageButton_Click(object sender, EventArgs e)
+        {
+            _currentPage = 1;
+            await SetRaportGridData();
+            UpdatePageLabel();
+        }
+
+        private async void LastPageButton_Click(object sender, EventArgs e)
+        {
+            _currentPage = _maxPagesCount;
+            await SetRaportGridData();
+            UpdatePageLabel();
         }
     }
 }
