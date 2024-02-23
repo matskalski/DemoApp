@@ -12,9 +12,8 @@ namespace DataAccess.Services
 {
     public class DataService
     {
-        private static int _site = 0;
         private string _baseQuery =
- $@"SELECT [Id] 
+ @"SELECT [Id] 
 ,[Name] 
 ,[Date] 
 ,[UserName] 
@@ -22,7 +21,7 @@ namespace DataAccess.Services
 FROM [dbo].[ExportsHistory]
 /**where**/
 ORDER BY id
-OFFSET {_site} ROWS
+OFFSET {0} ROWS
 FETCH NEXT 100 ROWS ONLY";
 
         private string _rowsCountQuery =
@@ -30,9 +29,11 @@ $@"SELECT COUNT(1)
 FROM [dbo].[ExportsHistory]
 /**where**/";
 
-        public async Task<ResultDataModel> GetExportsHistoryData(ExportsFilterData filters)
+        public async Task<ResultDataModel> GetExportsHistoryData(ExportsFilterData filters, int pageToDisplay)
         {
-            var dataQueryTemplate = PrepareQuery(filters, _baseQuery);
+            var offset = (pageToDisplay - 1) * 100;
+
+            var dataQueryTemplate = PrepareQuery(filters, string.Format(_baseQuery, offset));
             var rowsCountQuery = PrepareQuery(filters, _rowsCountQuery);
             using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["DemoApp.Properties.Settings.DemoAppDbConnectionString"].ConnectionString))
             {

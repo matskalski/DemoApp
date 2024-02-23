@@ -178,6 +178,7 @@
             // 
             // PageLabel
             // 
+            this.PageLabel.Enabled = false;
             this.PageLabel.Location = new System.Drawing.Point(434, 467);
             this.PageLabel.Name = "PageLabel";
             this.PageLabel.Size = new System.Drawing.Size(116, 21);

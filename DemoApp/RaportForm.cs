@@ -2,6 +2,7 @@
 using DataAccess.Services;
 using DevExpress.XtraEditors;
 using System;
+using System.Threading.Tasks;
 
 namespace DemoApp
 {
@@ -16,8 +17,6 @@ namespace DemoApp
         {
             _dataService = new DataService();
             InitializeComponent();
-
-            PageLabel.Enabled = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -28,19 +27,18 @@ namespace DemoApp
 
         private async void ConfirmButton_Click(object sender, EventArgs e)
         {
-            _currentPage = 1;
-
             var dateFrom = DateFrom.DateTime;
             var dateTo = DateTo.DateTime;
 
-            var result = await _dataService.GetExportsHistoryData(_filters);
+            _currentPage = 1;
+            var result = await _dataService.GetExportsHistoryData(_filters, _currentPage);
             _maxPagesCount = (int)Math.Ceiling((double)(result.RowsCount / 100M));
 
             RaportGrid.DataSource = result.Data;
             UpdatePageLabel();
         }
 
-        private void PrevButton_Click(object sender, EventArgs e)
+        private async void PrevButton_Click(object sender, EventArgs e)
         {
             if (_currentPage == 1)
             {
@@ -48,17 +46,29 @@ namespace DemoApp
             }
 
             _currentPage--;
+            var result = await _dataService.GetExportsHistoryData(_filters, _currentPage);
+            RaportGrid.DataSource = result.Data;
+
             UpdatePageLabel();
 
-            if (_currentPage == 1)
-            {
-                PrevButton.Enabled = false;
-            }
+            //if (_currentPage == 1)
+            //{
+            //    PrevButton.Enabled = false;
+            //}
         }
 
-        private void NextButton_Click(object sender, EventArgs e)
+        private async void NextButton_Click(object sender, EventArgs e)
         {
+            if (_currentPage == _maxPagesCount)
+            {
+                return;
+            }
+
             _currentPage++;
+
+            var result = await _dataService.GetExportsHistoryData(_filters, _currentPage);
+            RaportGrid.DataSource = result.Data;
+
             UpdatePageLabel();
         }
 
@@ -83,6 +93,14 @@ namespace DemoApp
         private void UpdatePageLabel()
         {
             PageLabel.Text = $"Strona {_currentPage}/{_maxPagesCount}";
+        }
+
+        private async Task<int> SetRaportGridData()
+        {
+            var result = await _dataService.GetExportsHistoryData(_filters, _currentPage);
+            RaportGrid.DataSource = result.Data;
+
+            return result.RowsCount;
         }
     }
 }
