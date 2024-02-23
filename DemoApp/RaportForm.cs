@@ -27,6 +27,17 @@ namespace DemoApp
 
         private async void ConfirmButton_Click(object sender, EventArgs e)
         {
+            ValidFilters();
+
+            _currentPage = 1;
+            var result = await SetRaportGridData();
+            _maxPagesCount = (int)Math.Ceiling((double)(result / 100M));
+
+            UpdatePageLabel();
+        }
+
+        private void ValidFilters()
+        {
             if (!AreFiltersValid())
             {
                 ValidationMessage.Visible = true;
@@ -37,12 +48,6 @@ namespace DemoApp
             {
                 ValidationMessage.Visible = false;
             }
-
-            _currentPage = 1;
-            var result = await SetRaportGridData();
-            _maxPagesCount = (int)Math.Ceiling((double)(result / 100M));
-
-            UpdatePageLabel();
         }
 
         private bool AreFiltersValid()

@@ -75,13 +75,13 @@ FROM [dbo].[ExportsHistory]
             if (!string.IsNullOrEmpty(filters.DateFrom))
             {
                 var dateFrom = ChangeDateFormat(filters.DateFrom);
-                builder.Where("Date >= @dateFrom", new { dateFrom = dateFrom });
+                builder.Where("CAST(Date AS DATE) >= @dateFrom", new { dateFrom = dateFrom });
             }
 
             if (!string.IsNullOrEmpty(filters.DateTo))
             {
                 var dateTo = ChangeDateFormat(filters.DateTo);
-                builder.Where("Date <= @dateTo", new { dateTo = dateTo });
+                builder.Where("CAST(Date AS DATE) <= @dateTo", new { dateTo = dateTo });
             }
 
             if (!string.IsNullOrEmpty(filters.Local))
