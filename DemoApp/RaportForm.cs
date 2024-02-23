@@ -27,7 +27,10 @@ namespace DemoApp
 
         private async void ConfirmButton_Click(object sender, EventArgs e)
         {
-            ValidFilters();
+            if (!AreFiltersValid())
+            {
+                return;
+            }
 
             _currentPage = 1;
             var result = await SetRaportGridData();
@@ -36,26 +39,24 @@ namespace DemoApp
             UpdatePageLabel();
         }
 
-        private void ValidFilters()
-        {
-            if (!AreFiltersValid())
-            {
-                ValidationMessage.Visible = true;
-                ValidationMessage.Text = "Data od jest późniejsza niż data do";
-                return;
-            }
-            else
-            {
-                ValidationMessage.Visible = false;
-            }
-        }
-
         private bool AreFiltersValid()
         {
             var dateFrom = DateFrom.DateTime;
             var dateTo = DateTo.DateTime;
 
-            return dateFrom <= dateTo;
+            var areDatesValid = dateFrom <= dateTo;
+
+            if (!areDatesValid)
+            {
+                ValidationMessage.Text = "Data od jest późniejsza niż data do";
+                RaportGrid.DataSource = null;
+            }
+            else
+            {
+                ValidationMessage.Text = null;
+            }
+
+            return areDatesValid;
         }
 
         private async void PrevButton_Click(object sender, EventArgs e)
